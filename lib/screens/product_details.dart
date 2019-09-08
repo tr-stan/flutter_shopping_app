@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class ProductDetailsScreen extends StatelessWidget {
+class ProductDetails extends StatelessWidget {
   // final String title;
   // ProductDetailScreen(this.title);
   static const routeName = '/product-details';
@@ -13,7 +13,7 @@ class ProductDetailsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('title'),
       ),
-      body: Text('body'),
+      body: Text('Product ID is: $productId'),
     );
   }
 }
