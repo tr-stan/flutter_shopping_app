@@ -16,6 +16,8 @@ class ProductsGrid extends StatelessWidget {
       padding: const EdgeInsets.all(5.0),
       itemCount: products.length,
       itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
+        // .value method ensures provider works even if
+        // data changes for widget list items in list
         value: products[i],
         child: ProductItem(
           // products[i].id,
