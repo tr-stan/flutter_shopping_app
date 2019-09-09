@@ -13,9 +13,6 @@ class ProductDetails extends StatelessWidget {
     final productId = ModalRoute.of(context).settings.arguments as String;
     final loadedProduct = Provider.of<Products>(
       context,
-      // default for 'listen' is true. setting false will make this
-      // widget not update when 'notifyListeners' is called in
-      // the parent widget
       listen: false,
     ).findById(productId);
     return Scaffold(

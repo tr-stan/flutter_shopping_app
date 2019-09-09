@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.indigo,
           accentColor: Colors.amber,
-          fontFamily: 'Corben',
+          fontFamily: 'Allan',
         ),
         home: ProductsOverview(),
         routes: {

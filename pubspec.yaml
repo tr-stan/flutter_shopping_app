@@ -63,10 +63,10 @@ flutter:
         - asset: assets/fonts/Allan-Regular.ttf
         - asset: assets/fonts/Allan-Bold.ttf
           weight: 700
-    - family: Corben
+    - family: Rubik
       fonts:
-        - asset: assets/fonts/Corben-Regular.ttf
-        - asset: assets/fonts/Corben-Bold.ttf
+        - asset: assets/fonts/Rubik-Regular.ttf
+        - asset: assets/fonts/Rubik-Bold.ttf
           weight: 700
   #
   # For details regarding fonts from package dependencies,
