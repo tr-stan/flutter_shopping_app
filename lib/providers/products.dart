@@ -43,12 +43,20 @@ class Products with ChangeNotifier {
   // return copy of _items with getter
   // so as not to mutate state
   List<Product> get items {
+    // if (_showFavoritesOnly) {
+    //   return _items.where((product) => product.isFavorite).toList();
+    // }
     return [..._items];
   }
 
-  Product findById(String id) {
-    return _items.firstWhere((prod) => prod.id == id);
+  List<Product> get favoriteItems {
+    return _items.where((product) => product.isFavorite).toList();
   }
+
+  Product findById(String id) {
+    return _items.firstWhere((product) => product.id == id);
+  }
+
 
   void addProduct() {
     notifyListeners();
