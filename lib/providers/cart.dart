@@ -22,7 +22,10 @@ class Cart with ChangeNotifier {
   }
 
   int get itemCount {
-    return _items.length;
+    // return _items.length;
+    var sum = 0;
+    _items.forEach((k, v) => sum += v.quantity);
+    return sum;
   }
 
   void addItem(

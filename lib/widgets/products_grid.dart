@@ -24,11 +24,7 @@ class ProductsGrid extends StatelessWidget {
         // .value method ensures provider works even if
         // data changes for widget list items in list
         value: products[i],
-        child: ProductItem(
-            // products[i].id,
-            // products[i].title,
-            // products[i].imageUrl,
-            ),
+        child: ProductItem(),
       ),
       // allows us to define how grid should generally be structured
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
