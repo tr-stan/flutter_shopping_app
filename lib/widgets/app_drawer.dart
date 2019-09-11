@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../screens/order_history.dart';
+import '../screens/user_products.dart';
 
 class AppDrawer extends StatelessWidget {
   Widget buildListTile(String title, IconData icon, Function tapHandler) {
@@ -26,6 +27,10 @@ class AppDrawer extends StatelessWidget {
           Divider(),
           buildListTile('Orders', Icons.payment, () {
             Navigator.of(context).pushReplacementNamed(OrderHistory.routeName);
+          }),
+          Divider(),
+          buildListTile('Manage Products', Icons.edit, () {
+            Navigator.of(context).pushReplacementNamed(UserProducts.routeName);
           }),
         ],
       ),
