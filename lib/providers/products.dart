@@ -26,7 +26,7 @@ class Products with ChangeNotifier {
       id: 'p3',
       title: 'Lace Dress',
       description: 'Cool and breezy - exactly what you need for the summer.',
-      price: 19.99,
+      price: 59.99,
       imageUrl:
           'https://i.imgur.com/10nosA3.jpg',
     ),
@@ -34,7 +34,7 @@ class Products with ChangeNotifier {
       id: 'p4',
       title: 'Blue Jacket',
       description: 'Ready to take your style out of this world.',
-      price: 49.99,
+      price: 65.99,
       imageUrl:
           'https://i.imgur.com/WtoegV5.jpg',
     ),
