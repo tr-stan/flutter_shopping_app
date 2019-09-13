@@ -56,11 +56,12 @@ class Products with ChangeNotifier {
     return _items.firstWhere((product) => product.id == id);
   }
 
-  void addProduct(Product product) {
+  Future<void> addProduct(Product product) {
     // w/ firebase u can name the collection as you wish, here '/products'
     // but other databases/services might have stricly defined endpoints
     const url = 'https://first-flutter-87cf6.firebaseio.com/products.json';
-    http.post(
+    return http
+    .post(
       url,
       body: json.encode({
         'title': product.title,
@@ -69,7 +70,8 @@ class Products with ChangeNotifier {
         'price': product.price,
         'isFavorite': product.isFavorite,
       }),
-    ).then((response) {
+    )
+    .then((response) {
       print(json.decode(response.body));
       final newProduct = Product(
         title: product.title,
