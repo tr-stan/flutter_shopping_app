@@ -92,10 +92,8 @@ class _EditProductState extends State<EditProduct> {
     }
     _form.currentState.save();
     if (_editedProduct.id != null) {
-      print("edited product is: $_editedProduct");
       Provider.of<Products>(context, listen: false).updateProduct(_editedProduct.id, _editedProduct);
     } else {
-      print('edited product will be added: $_editedProduct');
       Provider.of<Products>(context, listen: false).addProduct(_editedProduct);
     }
     Navigator.of(context).pop();
