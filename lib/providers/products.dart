@@ -56,22 +56,21 @@ class Products with ChangeNotifier {
     return _items.firstWhere((product) => product.id == id);
   }
 
-  Future<void> addProduct(Product product) {
+  Future<void> addProduct(Product product) async {
     // w/ firebase u can name the collection as you wish, here '/products'
     // but other databases/services might have stricly defined endpoints
     const url = 'https://first-flutter-87cf6.firebaseio.com/products.json';
-    return http
-    .post(
-      url,
-      body: json.encode({
-        'title': product.title,
-        'imageUrl': product.imageUrl,
-        'description': product.description,
-        'price': product.price,
-        'isFavorite': product.isFavorite,
-      }),
-    )
-    .then((response) {
+    try {
+      final response = await http.post(
+        url,
+        body: json.encode({
+          'title': product.title,
+          'imageUrl': product.imageUrl,
+          'description': product.description,
+          'price': product.price,
+          'isFavorite': product.isFavorite,
+        }),
+      );
       print(json.decode(response.body));
       final newProduct = Product(
         title: product.title,
@@ -80,10 +79,15 @@ class Products with ChangeNotifier {
         price: product.price,
         id: json.decode(response.body)['name'],
       );
+
       _items.add(newProduct);
       // _items.insert(0, newProduct,); // adds to start of list
       notifyListeners();
-    });
+    } catch (error) {
+      print(error);
+      // throwing error just so we can use .catchError in edi_product screen
+      throw error;
+    }
   }
 
   void updateProduct(String id, Product newProduct) {
