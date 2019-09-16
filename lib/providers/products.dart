@@ -56,6 +56,18 @@ class Products with ChangeNotifier {
     return _items.firstWhere((product) => product.id == id);
   }
 
+  Future<void> fetchProducts() async {
+    const url = 'https://first-flutter-87cf6.firebaseio.com/products.json';
+    try {
+      final response = await http.get(url);
+      print(json.decode(response.body));
+    }
+    catch (error) {
+      throw(error);
+    }
+
+  }
+
   Future<void> addProduct(Product product) async {
     // w/ firebase u can name the collection as you wish, here '/products'
     // but other databases/services might have stricly defined endpoints
@@ -71,7 +83,7 @@ class Products with ChangeNotifier {
           'isFavorite': product.isFavorite,
         }),
       );
-      print(json.decode(response.body));
+      // print(json.decode(response.body));
       final newProduct = Product(
         title: product.title,
         imageUrl: product.imageUrl,

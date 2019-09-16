@@ -5,6 +5,7 @@ import '../widgets/products_grid.dart';
 import '../widgets/badge.dart';
 import '../widgets/app_drawer.dart';
 import '../providers/cart.dart';
+import '../providers/products.dart';
 import './cart_details.dart';
 
 enum FilterOptions { Favorites, All }
@@ -16,6 +17,27 @@ class ProductsOverview extends StatefulWidget {
 
 class _ProductsOverviewState extends State<ProductsOverview> {
   var _showFavoritesOnly = false;
+  var _isInit = false;
+
+  @override
+  void initState() {
+    super.initState();
+    // Provider.of<Products>(context).fetchProducts();
+
+    // Future.delayed works with using the Provider.of or
+    // the Modal.of methods in the initState lifecycle
+    // Future.delayed(Duration.zero).then((_) {
+    //   Provider.of<Products>(context).fetchProducts();
+    // });
+  }
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_isInit == false) {
+    Provider.of<Products>(context).fetchProducts();
+    }
+    _isInit = true;
+  }
 
   @override
   Widget build(BuildContext context) {
