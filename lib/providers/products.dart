@@ -9,34 +9,34 @@ import './product.dart';
 // inherited widget's context
 class Products with ChangeNotifier {
   List<Product> _items = [
-    Product(
-      id: 'p1',
-      title: 'Nike Sneakers',
-      description: 'Unused pair of black Nike sneakers!',
-      price: 89.99,
-      imageUrl: 'https://i.imgur.com/P8AClNp.jpg',
-    ),
-    Product(
-      id: 'p2',
-      title: 'Rugged City Boots',
-      description: 'A nice pair of boots.',
-      price: 119.99,
-      imageUrl: 'https://i.imgur.com/HNzWRYA.jpg',
-    ),
-    Product(
-      id: 'p3',
-      title: 'Lace Dress',
-      description: 'Cool and breezy - exactly what you need for the summer.',
-      price: 59.99,
-      imageUrl: 'https://i.imgur.com/10nosA3.jpg',
-    ),
-    Product(
-      id: 'p4',
-      title: 'Blue Jacket',
-      description: 'Ready to take your style out of this world.',
-      price: 65.99,
-      imageUrl: 'https://i.imgur.com/WtoegV5.jpg',
-    ),
+    // Product(
+    //   id: 'p1',
+    //   title: 'Nike Sneakers',
+    //   description: 'Unused pair of black Nike sneakers!',
+    //   price: 89.99,
+    //   imageUrl: 'https://i.imgur.com/P8AClNp.jpg',
+    // ),
+    // Product(
+    //   id: 'p2',
+    //   title: 'Rugged City Boots',
+    //   description: 'A nice pair of boots.',
+    //   price: 119.99,
+    //   imageUrl: 'https://i.imgur.com/HNzWRYA.jpg',
+    // ),
+    // Product(
+    //   id: 'p3',
+    //   title: 'Lace Dress',
+    //   description: 'Cool and breezy - exactly what you need for the summer.',
+    //   price: 59.99,
+    //   imageUrl: 'https://i.imgur.com/10nosA3.jpg',
+    // ),
+    // Product(
+    //   id: 'p4',
+    //   title: 'Blue Jacket',
+    //   description: 'Ready to take your style out of this world.',
+    //   price: 65.99,
+    //   imageUrl: 'https://i.imgur.com/WtoegV5.jpg',
+    // ),
   ];
 
   // return copy of _items with getter
@@ -60,12 +60,24 @@ class Products with ChangeNotifier {
     const url = 'https://first-flutter-87cf6.firebaseio.com/products.json';
     try {
       final response = await http.get(url);
-      print(json.decode(response.body));
+      final resData = json.decode(response.body) as Map<String, dynamic>;
+      print(resData);
+      final List<Product> loadedProducts = [];
+      resData.forEach((id, data) {
+        loadedProducts.add(Product(
+          id: id,
+          title: data['title'],
+          description: data['description'],
+          price: data['price'],
+          imageUrl: data['imageUrl'],
+          isFavorite: data['isFavorite'],
+        ));
+      });
+      _items = loadedProducts;
+      notifyListeners();
+    } catch (error) {
+      throw (error);
     }
-    catch (error) {
-      throw(error);
-    }
-
   }
 
   Future<void> addProduct(Product product) async {

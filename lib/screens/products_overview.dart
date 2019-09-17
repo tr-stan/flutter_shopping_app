@@ -18,6 +18,7 @@ class ProductsOverview extends StatefulWidget {
 class _ProductsOverviewState extends State<ProductsOverview> {
   var _showFavoritesOnly = false;
   var _isInit = false;
+  var _isLoading = false;
 
   @override
   void initState() {
@@ -30,11 +31,19 @@ class _ProductsOverviewState extends State<ProductsOverview> {
     //   Provider.of<Products>(context).fetchProducts();
     // });
   }
+
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (_isInit == false) {
-    Provider.of<Products>(context).fetchProducts();
+      setState(() {
+        _isLoading = true;
+      });
+      Provider.of<Products>(context).fetchProducts().then((_) {
+        setState(() {
+          _isLoading = false;
+        });
+      });
     }
     _isInit = true;
   }
@@ -88,7 +97,11 @@ class _ProductsOverviewState extends State<ProductsOverview> {
         ],
       ),
       drawer: AppDrawer(),
-      body: ProductsGrid(_showFavoritesOnly),
+      body: _isLoading
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : ProductsGrid(_showFavoritesOnly),
     );
   }
 }
