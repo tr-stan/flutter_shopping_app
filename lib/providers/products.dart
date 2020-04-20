@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/http_exception.dart';
@@ -9,6 +10,7 @@ import './product.dart';
 // using ChangeNotifier mixin which works with the
 // inherited widget's context
 class Products with ChangeNotifier {
+  static const platform = const MethodChannel('products.ishop.app');
   List<Product> _items = [
     // Product(
     //   id: 'p1',
@@ -55,6 +57,61 @@ class Products with ChangeNotifier {
 
   Product findById(String id) {
     return _items.firstWhere((product) => product.id == id);
+  }
+
+  String _platformText = 'waiting';
+  List<String> _catText = ['meow'];
+  String _deletedCatText = 'no deleted cats';
+
+  String get platformText => _platformText;
+  List<String> get catText => _catText;
+  String get deletedCatText => _deletedCatText;
+
+  listProduct(Product product) async {
+    String productText;
+    try {
+      final String result =
+          await platform.invokeMethod('listProduct', <String, dynamic>{
+        "id": product.id,
+        "title": product.title,
+      });
+      productText = result;
+    } on PlatformException catch (e) {
+      productText = "Failed to list the product: ${e.message}";
+    }
+    _platformText = productText;
+    notifyListeners();
+  }
+
+  listCat(int id, String name, int age, String owner) async {
+    List<String> resultText;
+    try {
+      final List<dynamic> result = await platform.invokeMethod(
+        'listCat',
+        <String, dynamic>{"id": id,"name": name, "age": age, "owner": owner},
+      );
+      final finalText = List<String>.from(result);
+      resultText = finalText;
+    } on PlatformException catch (e) {
+      resultText = ["Failed to list the cat info: ${e.message}"];
+    }
+    _catText = resultText;
+    notifyListeners();
+  }
+
+  deleteCat(int id) async {
+    String deleteResultText;
+    try {
+      final String result = await platform.invokeMethod(
+        'deleteCat',
+        <String, int>{"id": id},
+      );
+      deleteResultText = result;
+    } on PlatformException catch (e) {
+      deleteResultText = "Failed to delete cat with id $id";
+    }
+    _deletedCatText = deleteResultText;
+    notifyListeners();
   }
 
   Future<void> fetchProducts() async {
