@@ -115,7 +115,7 @@ class _ProductsOverviewState extends State<ProductsOverview> {
                       child: Text('Get Cat Info!'),
                       onPressed: () {
                         Provider.of<Products>(context)
-                            .listCat(2, "Momo", 1, "Jason");
+                            .listCat(3, "Koguma", 1, "Tristan");
                       },
                     ),
                     Flexible(
