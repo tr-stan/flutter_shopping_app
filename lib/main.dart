@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shopping_app/screens/platform_channel_methods.dart';
 import 'package:provider/provider.dart';
 
 import './screens/products_overview.dart';
@@ -44,6 +45,7 @@ class MyApp extends StatelessWidget {
           OrderHistory.routeName: (ctx) => OrderHistory(),
           UserProducts.routeName: (ctx) => UserProducts(),
           EditProduct.routeName: (ctx) => EditProduct(),
+          PlatformChannelMethods.routeName: (ctx) => PlatformChannelMethods(),
         },
       ),
     );

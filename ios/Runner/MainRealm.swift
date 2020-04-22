@@ -33,11 +33,10 @@ class MainRealm {
     }
     
     func deleteCat(id: Int) -> String {
-        let cat = realm.objects(Cat.self).filter("id == '\(id)'").first!
-//        try! realm.write {
-//            realm.delete(cat)
-//            return "Successfully deleted cat where ID == \(id)"
-//        }
-        return cat.name
+        let cat = realm.objects(Cat.self).filter("id == \(id)").first!
+        try! realm.write {
+            realm.delete(cat)
+        }
+        return "Successfully deleted cat where ID == \(id)"
     }
 }

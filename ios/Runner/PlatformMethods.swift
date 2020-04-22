@@ -46,7 +46,8 @@ class PlatformMethods {
     func deleteCat(call: FlutterMethodCall, result: FlutterResult) {
         if let args = call.arguments as? [String: Int] {
             let id = args["id"]!
-            result(mainRealm.deleteCat(id: id))
+            let deletedCat: String = mainRealm.deleteCat(id: id)
+            result(deletedCat)
         }
     }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_shopping_app/screens/platform_channel_methods.dart';
 import 'package:provider/provider.dart';
-import 'dart:math' as math;
 
 import '../widgets/products_grid.dart';
 import '../widgets/badge.dart';
@@ -28,9 +28,9 @@ class _ProductsOverviewState extends State<ProductsOverview> {
 
     // Future.delayed works with using the Provider.of or
     // the Modal.of methods in the initState lifecycle
-    // Future.delayed(Duration.zero).then((_) {
-    //   Provider.of<Products>(context).fetchProducts();
-    // });
+    Future.delayed(Duration.zero).then((_) {
+      Provider.of<Products>(context).fetchProducts();
+    });
   }
 
   @override
@@ -107,39 +107,13 @@ class _ProductsOverviewState extends State<ProductsOverview> {
             : Center(
                 child: Column(
                   children: <Widget>[
-                    ...Provider.of<Products>(context)
-                        .catText
-                        .map((cat) => Flexible(child: Text(cat)))
-                        .toList(),
                     FlatButton(
-                      child: Text('Get Cat Info!'),
+                      child: Text("Go to Platform Channel methods"),
                       onPressed: () {
-                        Provider.of<Products>(context)
-                            .listCat(3, "Koguma", 1, "Tristan");
+                        Navigator.pushNamed(context, PlatformChannelMethods.routeName);
                       },
                     ),
-                    Flexible(
-                      child: Text(Provider.of<Products>(context).platformText),
-                    ),
-                    FlatButton(
-                      child: Text("Change Number"),
-                      onPressed: () {
-                        Provider.of<Products>(context).listProduct(
-                            Provider.of<Products>(context)
-                                .findById("-LowMybz8hLRutDlfRdf"));
-                      },
-                    ),
-                    Flexible(
-                      child: Text(Provider.of<Products>(context).deletedCatText),
-                    ),
-                    FlatButton(
-                      child: Text("Delete a Cat!"),
-                      onPressed: () {
-                        // Provider.of<Products>(context).deleteCat(0);
-
-                      },
-                    ),
-                    // ...Provider.of<Products>(context).items.map((product) => Text(product.id))
+                    ...Provider.of<Products>(context).items.map((product) => Text(product.id))
                   ],
                 ),
               ));

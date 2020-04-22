@@ -1,0 +1,43 @@
+error stack:
+
+2020-04-21 21:47:13.442876-0500 Runner[10678:30446066] flutter: Observatory listening on http://127.0.0.1:49341/hi0OfzN2SQc=/
+2020-04-21 21:47:14.582466-0500 Runner[10678:30446052] flutter: {-LowMybz8hLRutDlfRdf: {description: Retro, comfy Floral vest., imageUrl: https://i.imgur.com/ln3PT35.jpg, isFavorite: false, price: 50.99, title: 40's Floral Vest}, -LowZSTJYrPFGQnIrzU1: {description: Pair of distressed jeans fastened with chich patched badges., imageUrl: https://i.imgur.com/6E25Xqd.jpg, isFavorite: false, price: 69.96, title: Distressed jeans w/ patches}}
+2020-04-21 21:47:14.585683-0500 Runner[10678:30446052] flutter: {-LowMybz8hLRutDlfRdf: {description: Retro, comfy Floral vest., imageUrl: https://i.imgur.com/ln3PT35.jpg, isFavorite: false, price: 50.99, title: 40's Floral Vest}, -LowZSTJYrPFGQnIrzU1: {description: Pair of distressed jeans fastened with chich patched badges., imageUrl: https://i.imgur.com/6E25Xqd.jpg, isFavorite: false, price: 69.96, title: Distressed jeans w/ patches}}
+3
+3
+2020-04-21 21:47:29.400445-0500 Runner[10678:30445422] *** Terminating app due to uncaught exception 'Invalid value', reason: 'Expected object of type int for property 'id' on object of type 'Cat', but received: 3'
+*** First throw call stack:
+(
+	0   CoreFoundation                      0x000000010f321cce __exceptionPreprocess + 350
+	1   libobjc.A.dylib                     0x000000010cdab9b2 objc_exception_throw + 48
+	2   Realm                               0x000000010ac41352 _ZL15RLMPreconditionbP8NSStringS0_z + 626
+	3   Realm                               0x000000010accf13c _ZN12_GLOBAL__N_123validate_property_valueERKNS_15ColumnReferenceEP11objc_objectP8NSStringP15RLMObjectSchemaS6_ + 1020
+	4   Realm                               0x000000010ac45c96 _ZN12_GLOBAL__N_112QueryBuilder22apply_value_expressionEP15RLMObjectSchemaP8NSStringP11objc_objectP21NSComparisonPredicate + 630
+	5   Realm                               0x000000010ac428ef _ZN12_GLOBAL__N_112QueryBuilder15apply_predicateEP11NSPredicateP15RLMObjectSchema + 4367
+	6   Realm                               0x000000010ac414b5 _Z19RLMPredicateToQueryP11NSPredicateP15RLMObjectSchemaP9RLMSchemaRN5realm5GroupE + 261
+	7   Realm                               0x000000010ad32429 _ZZ35-[RLMResults objectsWithPredicate:]ENK4$_14clEv + 361
+	8   Realm                               0x000000010ad2bf56 _ZL25translateRLMResultsErrorsIZ35-[RLMResults objectsWithPredicate:]E4$_14EDaOT_P8NSString + 38
+	9   Realm                               0x000000010ad2bed8 -[RLMResults objectsWithPredicate:] + 72
+	10  RealmSwift                          0x000000010c3fbc07 $s10RealmSwift7ResultsV6filteryACyxGSS_ypdtF + 183
+	11  Runner                              0x000000010a6f731d $s6Runner9MainRealmC9deleteCat2idSSSi_tF + 733
+	12  Runner                              0x000000010a6f6241 $s6Runner15PlatformMethodsC9deleteCat4call6resultySo17FlutterMethodCallC_yypSgXEtF + 1121
+	13  Runner                              0x000000010a6f33fb $s6Runner11AppDelegateC11application_29didFinishLaunchingWithOptionsSbSo13UIApplicationC_SDySo0j6LaunchI3KeyaypGSgtFySo17FlutterMethodCallC_yypSgXEtcfU0_ + 939
+	14  Runner                              0x000000010a6f3540 $sSo17FlutterMethodCallCypSgIgn_Ieggy_AbCIegn_Ieggg_TR + 64
+	15  Runner                              0x000000010a6f3643 $sSo17FlutterMethodCallCypSgIegn_Ieggg_AByXlSgIeyBy_IeyByy_TR + 147
+	16  Flutter                             0x000000010d19fb35 __45-[FlutterMethodChannel setMethodCallHandler:]_block_invoke + 104
+	17  Flutter                             0x000000010d133920 _ZNK7flutter21PlatformMessageRouter21HandlePlatformMessageEN3fml6RefPtrINS_15PlatformMessageEEE + 166
+	18  Flutter                             0x000000010d1373ce _ZN7flutter15PlatformViewIOS21HandlePlatformMessageEN3fml6RefPtrINS_15PlatformMessageEEE + 38
+	19  Flutter                             0x000000010d1996e9 _ZNSt3__110__function6__funcIZN7flutter5Shell29OnEngineHandlePlatformMessageEN3fml6RefPtrINS2_15PlatformMessageEEEE4$_32NS_9allocatorIS8_EEFvvEEclEv + 57
+	20  Flutter                             0x000000010d1468f3 _ZN3fml15MessageLoopImpl10FlushTasksENS_9FlushTypeE + 117
+	21  Flutter                             0x000000010d14b638 _ZN3fml17MessageLoopDarwin11OnTimerFireEP16__CFRunLoopTimerPS0_ + 26
+	22  CoreFoundation                      0x000000010f2863f4 __CFRUNLOOP_IS_CALLING_OUT_TO_A_TIMER_CALLBACK_FUNCTION__ + 20
+	23  CoreFoundation                      0x000000010f28608e __CFRunLoopDoTimer + 1038
+	24  CoreFoundation                      0x000000010f2856ea __CFRunLoopDoTimers + 282
+	25  CoreFoundation                      0x000000010f28033e __CFRunLoopRun + 1950
+	26  CoreFoundation                      0x000000010f27f884 CFRunLoopRunSpecific + 404
+	27  GraphicsServices                    0x0000000115339c1a GSEventRunModal + 139
+	28  UIKitCore                           0x00000001183f1220 UIApplicationMain + 1605
+	29  Runner                              0x000000010a6f3eb8 main + 72
+	30  libdyld.dylib                       0x00000001101e210d start + 1
+)
+libc++abi.dylib: terminating with uncaught exception of type NSException

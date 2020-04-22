@@ -10,21 +10,27 @@ override func application(
   ) -> Bool {
     
     let config = Realm.Configuration(
-        schemaVersion: 1,
+        schemaVersion: 2,
         
         // Set the block which will be called automatically when opening a Realm with
         // a schema version lower than the one set above
         migrationBlock: { migration, oldSchemaVersion in
             // We haven’t migrated anything yet, so oldSchemaVersion == 0
-            if (oldSchemaVersion < 1) {
-                // Nothing to do!
-                // Realm will automatically detect new properties and removed properties
-                // And will update the schema on disk automatically
+            if (oldSchemaVersion < 2) {
+                
+                migration.enumerateObjects(ofType: Cat.className()) {
+                    oldObject, newObject in
+                    newObject!["id"] = 0
+                    newObject!["name"] = oldObject!["name"] as! String
+                    newObject!["age"] = oldObject!["age"] as! Int
+                    newObject!["owner"] = oldObject!["owner"] as! String
+                }
             }
     })
     
     // Tell Realm to use this new configuration object for the default Realm
     Realm.Configuration.defaultConfiguration = config
+
     
     let platformMethods = PlatformMethods()
     let controller : FlutterViewController = window?.rootViewController as! FlutterViewController
