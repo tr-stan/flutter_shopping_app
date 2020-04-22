@@ -60,11 +60,13 @@ class Products with ChangeNotifier {
   }
 
   String _platformText = 'waiting';
-  List<String> _catText = ['meow'];
+  List<String> _catsText = ['meow'];
+  String _catText = "No Kitty Created yet";
   String _deletedCatText = 'no deleted cats';
 
   String get platformText => _platformText;
-  List<String> get catText => _catText;
+  List<String> get catsText => _catsText;
+  String get catText => _catText;
   String get deletedCatText => _deletedCatText;
 
   listProduct(Product product) async {
@@ -83,17 +85,31 @@ class Products with ChangeNotifier {
     notifyListeners();
   }
 
-  listCat(int id, String name, int age, String owner) async {
+  listCats() async {
     List<String> resultText;
     try {
       final List<dynamic> result = await platform.invokeMethod(
-        'listCat',
-        <String, dynamic>{"id": id,"name": name, "age": age, "owner": owner},
+        'listCats',
       );
       final finalText = List<String>.from(result);
       resultText = finalText;
     } on PlatformException catch (e) {
       resultText = ["Failed to list the cat info: ${e.message}"];
+    }
+    _catsText = resultText;
+    notifyListeners();
+  }
+
+  createCat(int id, String name, int age, String owner) async {
+    String resultText;
+    try {
+      final String result = await platform.invokeMethod(
+        'createCat',
+        <String, dynamic>{"id": id, "name": name, "age": age, "owner": owner},
+      );
+      resultText = result;
+    } on PlatformException catch (e) {
+      resultText = "Failed to create cat: ${e.message}";
     }
     _catText = resultText;
     notifyListeners();

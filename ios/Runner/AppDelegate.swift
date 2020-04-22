@@ -40,14 +40,11 @@ override func application(
        (call: FlutterMethodCall, result: FlutterResult) -> Void in
       // Note: this method is invoked on the UI thread.
       switch call.method {
-        case "listProduct":
-          platformMethods.listProduct(call: call, result: result)
-        case "listCat":
-          platformMethods.listCat(call: call, result: result)
-      case "deleteCat":
-        platformMethods.deleteCat(call: call, result: result)
-        default:
-          result(FlutterMethodNotImplemented)
+      case "listProduct": platformMethods.listProduct(call: call, result: result)
+      case "createCat": platformMethods.createCat(call: call, result: result)
+      case "listCats": platformMethods.listCats(call: call, result: result)
+      case "deleteCat": platformMethods.deleteCat(call: call, result: result)
+      default: result(FlutterMethodNotImplemented)
       }
     })
 
