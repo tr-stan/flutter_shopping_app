@@ -4,6 +4,7 @@ import RealmSwift
 
 @UIApplicationMain
 @objc class AppDelegate: FlutterAppDelegate {
+    
 override func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
@@ -44,6 +45,7 @@ override func application(
       case "createCat": platformMethods.createCat(call: call, result: result)
       case "listCats": platformMethods.listCats(call: call, result: result)
       case "deleteCat": platformMethods.deleteCat(call: call, result: result)
+      case "deleteCats": platformMethods.deleteCats(call: call, result: result)
       default: result(FlutterMethodNotImplemented)
       }
     })

@@ -32,7 +32,9 @@ class PlatformMethods {
           let id = args["id"] as! Int
 
           mainRealm.writeToDB(id: id, name: name, age: age, owner: owner)
-            result(String("Cat created named \(name) with id: \(id)"))}
+            result(String("Cat created named \(name) with id: \(id)"))
+            
+        }
     }
     
     func listCats(call: FlutterMethodCall, result: FlutterResult) {
@@ -45,6 +47,14 @@ class PlatformMethods {
             let id = args["id"]!
             let deletedCat: String = mainRealm.deleteCat(id: id)
             result(deletedCat)
+        }
+    }
+    
+    func deleteCats(call: FlutterMethodCall, result: FlutterResult) {
+        if let args = call.arguments as? [String: Int] {
+            let id = args["id"] ?? 100
+            let deletedCats: String = mainRealm.deleteCats(id: id)
+            result(deletedCats)
         }
     }
 }

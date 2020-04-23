@@ -62,12 +62,14 @@ class Products with ChangeNotifier {
   String _platformText = 'waiting';
   List<String> _catsText = ['meow'];
   String _catText = "No Kitty Created yet";
-  String _deletedCatText = 'no deleted cats';
+  String _deletedCatText = 'no deleted cat';
+  String _deletedCatsText = 'no deleted cats';
 
   String get platformText => _platformText;
   List<String> get catsText => _catsText;
   String get catText => _catText;
   String get deletedCatText => _deletedCatText;
+  String get deletedCatsText => _deletedCatsText;
 
   listProduct(Product product) async {
     String productText;
@@ -127,6 +129,21 @@ class Products with ChangeNotifier {
       deleteResultText = "Failed to delete cat with id $id";
     }
     _deletedCatText = deleteResultText;
+    notifyListeners();
+  }
+
+  deleteCats(int id) async {
+    String deletedCatsResultText;
+    try {
+      final String result = await platform.invokeMethod(
+        'deleteCats',
+        <String, int>{"id": id},
+      );
+      deletedCatsResultText = result;
+    } on PlatformException catch (e) {
+      deletedCatsResultText = "Failed to delete cats: ${e.message}";
+    }
+    _deletedCatsText = deletedCatsResultText;
     notifyListeners();
   }
 

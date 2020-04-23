@@ -8,6 +8,7 @@ class PlatformChannelMethods extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text("Platform Methods!")),
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -27,7 +28,7 @@ class PlatformChannelMethods extends StatelessWidget {
               child: Text('Create a cat!'),
               onPressed: () {
                 Provider.of<Products>(context)
-                    .createCat(2, "Kronos", 1, "Natasha");
+                    .createCat(3, "Chestah", 2, "Kellan");
               },
             ),
             Flexible(
@@ -47,9 +48,18 @@ class PlatformChannelMethods extends StatelessWidget {
             FlatButton(
               child: Text("Delete a Cat!"),
               onPressed: () {
-                Provider.of<Products>(context).deleteCat(0);
+                Provider.of<Products>(context).deleteCat(3);
               },
             ),
+            Flexible(
+              child: Text(Provider.of<Products>(context).deletedCatsText),
+            ),
+            FlatButton(
+              child: Text("Delete Cats!"),
+              onPressed: () {
+                Provider.of<Products>(context).deleteCats(3);
+              },
+            )
             // ...Provider.of<Products>(context).items.map((product) => Text(product.id))
           ],
         ),
